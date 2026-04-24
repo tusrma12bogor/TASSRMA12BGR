@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TAS SRMA 12 BOGOR | Layanan Administrasi Terpadu</title>
+    <title>TAS SRMA 12 BOGOR | Administrasi Sekolah Terpadu</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -11,214 +11,100 @@
 
     <style>
         :root {
-            --primary: #dc2626;
-            --primary-dark: #991b1b;
-            --secondary: #0f172a;
-            --accent: #10b981;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --bg-deep: #020617;
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg-body: #f8fafc; /* Putih Abu-abu */
+            --abu-gelap: #1e293b; /* Abu-abu Charcoal */
+            --abu-sedang: #475569; /* Abu-abu Slate */
+            --abu-muda: #e2e8f0; /* Abu-abu Terang */
+            --merah: #dc2626; /* Merah Aksen */
+            --merah-hover: #b91c1c;
+            --putih: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-deep);
-            color: var(--text-main);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--bg-body); 
+            color: var(--abu-gelap);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* CUSTOM SCROLLBAR */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
-
-        /* REUSABLE COMPONENTS */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
-        .section-padding { padding: 100px 0; }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: var(--transition);
-            border: 1px solid transparent;
+
+        /* NAVBAR */
+        .navbar { 
+            position: fixed; top: 0; width: 100%; z-index: 1000; 
+            background: var(--putih); padding: 15px 0;
+            border-bottom: 3px solid var(--merah);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--abu-gelap); text-decoration: none; }
+        .logo span { color: var(--merah); }
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { color: var(--abu-sedang); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: var(--transition); }
+        .nav-links a:hover { color: var(--merah); }
 
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
+        /* HERO */
+        .hero { 
+            padding: 160px 0 100px; 
+            background: linear-gradient(135deg, var(--abu-gelap) 0%, var(--abu-sedang) 100%);
+            color: var(--putih);
+            text-align: center;
         }
+        .hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 20px; font-weight: 800; }
+        .hero h1 span { color: var(--merah); }
+        .hero p { opacity: 0.8; max-width: 700px; margin: 0 auto 30px; font-size: 1.1rem; }
 
-        /* NAVIGATION */
-        .navbar {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 20px 0;
-            z-index: 1000;
-            transition: var(--transition);
+        /* SECTION TITLES */
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.2rem; color: var(--abu-gelap); }
+        .section-header .divider { width: 60px; height: 4px; background: var(--merah); margin: 15px auto; }
+
+        /* CARDS - LAYANAN */
+        .grid-layanan { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        .card-layanan { 
+            background: var(--putih); padding: 40px; border-radius: 12px; 
+            border-left: 5px solid var(--abu-muda);
+            transition: var(--transition); box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
-
-        .navbar.scrolled {
-            background: rgba(2, 6, 23, 0.85);
-            backdrop-filter: blur(15px);
-            padding: 15px 0;
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo span { color: var(--primary); }
-
-        .nav-links { display: flex; gap: 35px; list-style: none; }
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover { color: var(--primary); }
-
-        /* HERO SECTION */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            background: radial-gradient(circle at 50% 50%, rgba(220, 38, 38, 0.05) 0%, transparent 70%);
-            position: relative;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 25px;
-            font-weight: 800;
-        }
-
-        .hero h1 mark {
-            background: none;
-            color: var(--primary);
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-
-        /* STATS CARD */
-        .hero-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            padding: 40px;
-            border-radius: 24px;
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-
-        .hero-card::after {
-            content: '';
-            position: absolute;
-            top: -10px; right: -10px;
-            width: 50px; height: 50px;
-            background: var(--primary);
-            filter: blur(40px);
-            z-index: -1;
-        }
-
-        /* FEATURE CARDS */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            padding: 40px;
-            border-radius: 20px;
-            transition: var(--transition);
-        }
-
-        .service-card:hover {
-            border-color: var(--primary);
-            background: rgba(220, 38, 38, 0.02);
+        .card-layanan:hover { 
+            border-left: 5px solid var(--merah); 
             transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .icon-layanan { 
+            width: 50px; height: 50px; background: var(--abu-muda); 
+            display: flex; align-items: center; justify-content: center; 
+            border-radius: 8px; color: var(--merah); font-size: 1.5rem; margin-bottom: 20px;
         }
 
-        .icon-box {
-            width: 60px;
-            height: 60px;
-            background: rgba(220, 38, 38, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-            color: var(--primary);
-            font-size: 1.5rem;
+        /* TIM SECTION */
+        .grid-tim { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .card-tim { 
+            background: var(--putih); padding: 30px; border-radius: 15px; 
+            text-align: center; border: 1px solid var(--abu-muda);
         }
+        .card-tim img { 
+            width: 100px; height: 100px; background: var(--abu-muda); 
+            border-radius: 50%; margin-bottom: 15px; object-fit: cover;
+            border: 3px solid var(--putih); outline: 2px solid var(--merah);
+        }
+        .card-tim h4 { color: var(--abu-gelap); font-weight: 700; }
+        .card-tim p { color: var(--merah); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
 
         /* FOOTER */
-        footer {
-            background: #010409;
-            border-top: 1px solid var(--glass-border);
-            padding: 80px 0 30px;
-        }
+        footer { background: var(--abu-gelap); color: var(--putih); padding: 60px 0 20px; margin-top: 80px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid var(--abu-sedang); font-size: 0.8rem; opacity: 0.6; }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 50px;
+        .btn-merah {
+            background: var(--merah); color: white; padding: 12px 30px; 
+            text-decoration: none; border-radius: 6px; font-weight: 700; transition: var(--transition);
         }
+        .btn-merah:hover { background: var(--merah-hover); }
 
-        /* MOBILE MENU */
-        .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; }
-
-        @media (max-width: 992px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero p { margin: 0 auto 40px; }
-            .nav-links { display: none; }
-            .menu-toggle { display: block; }
-        }
+        @media (max-width: 768px) { .nav-links { display: none; } }
     </style>
 </head>
 <body>
@@ -227,72 +113,77 @@
         <div class="container nav-content">
             <a href="#" class="logo">TAS <span>SRMA 12</span></a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Layanan</a></li>
-                <li><a href="#about">Tentang</a></li>
-                <li><a href="#contact">Kontak</a></li>
+                <li><a href="#layanan">Layanan</a></li>
+                <li><a href="#tim">Tim Kami</a></li>
+                <li><a href="#kontak">Kontak</a></li>
             </ul>
-            <a href="#contact" class="btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">E-Layanan</a>
-            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
         </div>
     </nav>
 
-    <section class="hero" id="home">
-        <div class="container hero-grid">
-            <div data-aos="fade-right">
-                <h1>Modernisasi <mark>Administrasi</mark> Sekolah Rakyat</h1>
-                <p>Mewujudkan tata kelola sekolah yang transparan, cepat, dan berbasis digital untuk mendukung ekosistem pendidikan yang lebih baik.</p>
-                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                    <a href="#services" class="btn-primary">Explorasi Layanan <i class="fas fa-arrow-right"></i></a>
-                    <div style="display: flex; align-items: center; gap: 10px; color: var(--text-muted);">
-                        <i class="fas fa-check-circle color: var(--accent)"></i> ISO 9001 Compliant
-                    </div>
-                </div>
+    <header class="hero">
+        <div class="container">
+            <h1 data-aos="fade-up">Administrasi Sekolah <span>Efisien & Terpercaya</span></h1>
+            <p data-aos="fade-up" data-aos-delay="100">Mendukung SRMA 12 Bogor melalui tata kelola surat, data, dan keuangan yang transparan dan profesional.</p>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <a href="#layanan" class="btn-merah">Pelajari Layanan</a>
             </div>
-            <div class="hero-card" data-aos="zoom-in" data-aos-delay="200">
-                <div style="margin-bottom: 30px;">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Status Sistem</h3>
-                    <div style="height: 4px; background: #1e293b; border-radius: 2px;">
-                        <div style="width: 95%; height: 100%; background: var(--accent); border-radius: 2px;"></div>
-                    </div>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div>
-                        <small style="color: var(--text-muted)">Uptime</small>
-                        <p style="font-size: 1.2rem; font-weight: 700;">99.9%</p>
-                    </div>
-                    <div>
-                        <small style="color: var(--text-muted)">Response</small>
-                        <p style="font-size: 1.2rem; font-weight: 700;">< 2ms</p>
-                    </div>
-                </div>
+        </div>
+    </header>
+
+    <section class="container" id="layanan" style="padding: 100px 0;">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Layanan Administrasi</h2>
+            <div class="divider"></div>
+        </div>
+        
+        <div class="grid-layanan">
+            <div class="card-layanan" data-aos="zoom-in">
+                <div class="icon-layanan"><i class="fas fa-envelope-open-text"></i></div>
+                <h3>Surat Menyurat</h3>
+                <p>Digitalisasi registrasi surat masuk/keluar untuk pelacakan dokumen yang lebih cepat.</p>
+            </div>
+            <div class="card-layanan" data-aos="zoom-in" data-aos-delay="50">
+                <div class="icon-layanan"><i class="fas fa-users-gear"></i></div>
+                <h3>Kepegawaian</h3>
+                <p>Pengelolaan berkas GTK (Guru & Tenaga Kependidikan) dan administrasi kehadiran.</p>
+            </div>
+            <div class="card-layanan" data-aos="zoom-in" data-aos-delay="100">
+                <div class="icon-layanan"><i class="fas fa-user-graduate"></i></div>
+                <h3>Kesiswaan</h3>
+                <p>Manajemen Buku Induk Siswa, mutasi, dan data statistik peserta didik secara berkala.</p>
+            </div>
+            <div class="card-layanan" data-aos="zoom-in" data-aos-delay="150">
+                <div class="icon-layanan"><i class="fas fa-file-invoice"></i></div>
+                <h3>Manajemen Dokumen</h3>
+                <p>Sistem pengarsipan dokumen legalitas dan inventaris sekolah yang terorganisir.</p>
+            </div>
+            <div class="card-layanan" data-aos="zoom-in" data-aos-delay="200">
+                <div class="icon-layanan"><i class="fas fa-wallet"></i></div>
+                <h3>Adm. Keuangan</h3>
+                <p>Pencatatan dana operasional dan pelaporan anggaran secara akuntabel.</p>
+            </div>
+            <div class="card-layanan" data-aos="zoom-in" data-aos-delay="250">
+                <div class="icon-layanan"><i class="fas fa-chart-line"></i></div>
+                <h3>Laporan & Statistik</h3>
+                <p>Penyajian data sekolah dalam bentuk grafik untuk kebutuhan evaluasi strategis.</p>
             </div>
         </div>
     </section>
 
-    <section class="section-padding" id="services">
+    <section id="tim" style="background: var(--abu-muda); padding: 100px 0;">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 60px;" data-aos="fade-up">
-                <h2 style="font-size: 2.5rem; margin-bottom: 15px;">Layanan Unggulan</h2>
-                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Kami menyediakan solusi administrasi komprehensif yang dirancang untuk efisiensi operasional sekolah.</p>
+            <div class="section-header" data-aos="fade-up">
+                <h2>Tim Administrasi</h2>
+                <div class="divider"></div>
             </div>
-            
-            <div class="grid-3">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon-box"><i class="fas fa-shield-halved"></i></div>
-                    <h3>Data Governance</h3>
-                    <p style="color: var(--text-muted)">Pengelolaan data siswa dan personil dengan standar keamanan data tingkat tinggi.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon-box"><i class="fas fa-file-signature"></i></div>
-                    <h3>Digital Archiving</h3>
-                    <p style="color: var(--text-muted)">Digitalisasi dokumen penting sekolah untuk aksesibilitas yang lebih cepat dan aman.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="icon-box"><i class="fas fa-chart-line"></i></div>
-                    <h3>Reporting Tools</h3>
-                    <p style="color: var(--text-muted)">Sistem pelaporan otomatis untuk keperluan internal maupun dinas pendidikan.</p>
-                </div>
+            <div class="grid-tim">
+                <div class="card-tim" data-aos="fade-up"><div class="avatar-placeholder"><i class="fas fa-user-circle fa-5x" style="color: var(--abu-sedang)"></i></div><h4 style="margin-top:15px">Kepala TAS</h4><p>Coordinator</p></div>
+                <div class="card-tim" data-aos="fade-up" data-aos-delay="50"><div class="avatar-placeholder"><i class="fas fa-user-circle fa-5x" style="color: var(--abu-sedang)"></i></div><h4 style="margin-top:15px">Sekretaris</h4><p>Adm. Umum</p></div>
+                <div class="card-tim" data-aos="fade-up" data-aos-delay="100"><div class="avatar-placeholder"><i class="fas fa-user-circle fa-5x" style="color: var(--abu-sedang)"></i></div><h4 style="margin-top:15px">Bendahara</h4><p>Keuangan</p></div>
+                <div class="card-tim" data-aos="fade-up" data-aos-delay="150"><div class="avatar-placeholder"><i class="fas fa-user-circle fa-5x" style="color: var(--abu-sedang)"></i></div><h4 style="margin-top:15px">Operator</h4><p>Dapodik & Data</p></div>
+                <div class="card-tim" data-aos="fade-up" data-aos-delay="200"><div class="avatar-placeholder"><i class="fas fa-user-circle fa-5x" style="color: var(--abu-sedang)"></i></div><h4 style="margin-top:15px">Adm. Kesiswaan</h4><p>Student Affairs</p></div>
+                <div class="card-tim" data-aos="fade-up" data-aos-delay="250"><div class="avatar-placeholder"><i class="fas fa-user-circle fa-5x" style="color: var(--abu-sedang)"></i></div><h4 style="margin-top:15px">Arsiparis</h4><p>Document Control</p></div>
+                <div class="card-tim" data-aos="fade-up" data-aos-delay="300"><div class="avatar-placeholder"><i class="fas fa-user-circle fa-5x" style="color: var(--abu-sedang)"></i></div><h4 style="margin-top:15px">Logistik</h4><p>Inventaris</p></div>
             </div>
         </div>
     </section>
@@ -301,47 +192,24 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <a href="#" class="logo" style="margin-bottom: 20px;">TAS <span>SRMA 12</span></a>
-                    <p style="color: var(--text-muted)">Gedung Administrasi Terpadu SRMA 12 Bogor.<br>Jl. Pendidikan No. 12, Kota Bogor.</p>
+                    <h3 style="margin-bottom: 20px;">TAS SRMA 12</h3>
+                    <p style="opacity: 0.7;">Layanan Administrasi Sekolah Rakyat 12 Bogor.<br>Integritas, Profesional, Transparan.</p>
                 </div>
                 <div>
-                    <h4 style="margin-bottom: 20px;">Navigasi</h4>
-                    <ul style="list-style: none; color: var(--text-muted)">
-                        <li style="margin-bottom: 10px;">Portal Siswa</li>
-                        <li style="margin-bottom: 10px;">E-Arsip</li>
-                        <li style="margin-bottom: 10px;">Dapodik</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="margin-bottom: 20px;">Hubungi Kami</h4>
-                    <p style="color: var(--text-muted)">support@tas-srma12.sch.id<br>+62 251 1234 567</p>
+                    <h4 style="margin-bottom: 20px;">Kontak Kami</h4>
+                    <p style="opacity: 0.7;"><i class="fas fa-envelope"></i> info@srma12bogor.sch.id</p>
+                    <p style="opacity: 0.7;"><i class="fas fa-phone"></i> (0251) 1234567</p>
                 </div>
             </div>
-            <div style="text-align: center; padding-top: 30px; border-top: 1px solid var(--glass-border); color: var(--text-muted); font-size: 0.9rem;">
-                &copy; 2026 Tenaga Administrasi Sekolah SRMA 12 Bogor. Dikelola secara profesional.
+            <div class="footer-bottom">
+                &copy; 2026 Tenaga Administrasi Sekolah SRMA 12 Bogor. All Rights Reserved.
             </div>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Init Animation
-        AOS.init({ duration: 1000, once: true });
-
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile Menu Simple Logic
-        document.querySelector('.menu-toggle').addEventListener('click', () => {
-            alert('Menu mobile dapat dikembangkan sesuai kebutuhan navigasi Bos!');
-        });
+        AOS.init({ duration: 800, once: true });
     </script>
 </body>
 </html>
