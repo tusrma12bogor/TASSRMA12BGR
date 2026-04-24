@@ -1,603 +1,220 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Tenaga Administrasi Sekolah SRMA 12 Bogor - Layanan administrasi profesional, transparan, dan berpihak pada rakyat">
-<meta name="keywords" content="TAS, SRMA 12 Bogor, administrasi sekolah, sekolah rakyat">
-<meta name="author" content="TAS SRMA 12 Bogor">
-<meta name="theme-color" content="#dc2626">
-
-<title>TAS SRMA 12 BOGOR - Tenaga Administrasi Sekolah Rakyat</title>
-
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<style>
-:root {
-    --abu-gelap: #1e293b;
-    --abu-sedang: #334155;
-    --abu-muda: #64748b;
-    --abu-terang: #e2e8f0;
-    --abu-bg: #f1f5f9;
-    --merah: #dc2626;
-    --merah-tua: #b91c1c;
-    --merah-muda: #ef4444;
-    --putih: #ffffff;
-    --putih-abu: #f8fafc;
-    --hijau: #10b981;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 90px;
-}
-
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: var(--abu-bg);
-    color: var(--abu-gelap);
-    line-height: 1.7;
-    overflow-x: hidden;
-}
-
-/* LOADING ANIMATION */
-.loader {
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(135deg, var(--abu-gelap) 0%, var(--abu-sedang) 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: var(--transition);
-}
-
-.loader.hide {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.spinner {
-    width: 60px;
-    height: 60px;
-    border: 4px solid rgba(255,255,255,0.1);
-    border-top: 4px solid var(--merah);
-    border-radius: 50%;
-    animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    margin-bottom: 1.5rem;
-}
-
-.spinner-text {
-    color: var(--putih);
-    font-weight: 600;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* NAVBAR */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(30, 41, 59, 0.95);
-    backdrop-filter: blur(20px);
-    color: var(--putih);
-    padding: 1rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    border-bottom: 3px solid var(--merah);
-    transition: var(--transition);
-}
-
-.navbar.scrolled {
-    padding: 0.75rem 5%;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.navbar .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-}
-
-.navbar .logo-icon {
-    width: 45px;
-    height: 45px;
-    background: linear-gradient(135deg, var(--merah), var(--merah-tua));
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 1.3rem;
-    box-shadow: 0 4px 15px rgba(220,38,38,0.3);
-    transition: var(--transition);
-}
-
-.navbar .logo:hover .logo-icon {
-    transform: scale(1.05);
-}
-
-.navbar strong {
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-.navbar span {
-    color: var(--merah);
-    font-weight: 800;
-}
-
-/* NAV LINKS */
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.nav-links a {
-    color: var(--putih);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.95rem;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: var(--transition);
-    position: relative;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-    color: var(--merah);
-    background: rgba(220,38,38,0.1);
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: var(--merah);
-    transition: var(--transition);
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 80%;
-}
-
-/* HAMBURGER */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-    padding: 0.5rem;
-}
-
-.hamburger span {
-    width: 25px;
-    height: 3px;
-    background: var(--putih);
-    border-radius: 2px;
-    transition: var(--transition);
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* HERO */
-.hero {
-    min-height: 100vh;
-    padding: 12rem 5% 6rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(135deg, var(--abu-gelap) 0%, var(--abu-sedang) 50%, var(--abu-gelap) 100%);
-    color: var(--putih);
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: 
-        radial-gradient(circle at 20% 80%, rgba(220,38,38,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(220,38,38,0.08) 0%, transparent 50%),
-        repeating-linear-gradient(45deg, transparent 0 2px, rgba(220,38,38,0.03) 2px 8px);
-    pointer-events: none;
-}
-
-.hero-content {
-    max-width: 800px;
-    z-index: 2;
-    position: relative;
-}
-
-.hero .garuda {
-    width: 90px;
-    height: 90px;
-    margin: 0 auto 2rem;
-    background: linear-gradient(135deg, var(--merah), var(--merah-tua));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.8rem;
-    box-shadow: 0 10px 30px rgba(220,38,38,0.4);
-    animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-}
-
-.hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 800;
-    margin-bottom: 1rem;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-}
-
-.hero h1 span {
-    background: linear-gradient(135deg, var(--merah), var(--merah-muda));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.hero .subtitle {
-    font-size: 1.25rem;
-    opacity: 0.95;
-    max-width: 600px;
-    margin: 0 auto 2rem;
-}
-
-/* SECTIONS */
-.section {
-    padding: 6rem 5%;
-    max-width: 1400px;
-    margin: 0 auto;
-}
-
-.section-title {
-    text-align: center;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--abu-gelap);
-    position: relative;
-    padding-bottom: 1.5rem;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--merah), var(--hijau));
-    border-radius: 2px;
-}
-
-.section-subtitle {
-    text-align: center;
-    color: var(--abu-muda);
-    font-size: 1.1rem;
-    margin-bottom: 4rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* GRID */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-}
-
-/* CARDS */
-.card {
-    background: var(--putih);
-    padding: 2.5rem 2rem;
-    border-radius: 20px;
-    transition: var(--transition);
-    text-align: center;
-    border: 1px solid var(--abu-terang);
-    position: relative;
-    overflow: hidden;
-}
-
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--merah), var(--hijau));
-}
-
-.card:hover {
-    transform: translateY(-12px) scale(1.02);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-}
-
-.card .icon {
-    font-size: 3rem;
-    background: linear-gradient(135deg, var(--merah), var(--merah-muda));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 1.5rem;
-    display: block;
-}
-
-.card strong {
-    font-size: 1.3rem;
-    color: var(--abu-gelap);
-    display: block;
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.card p {
-    color: var(--abu-muda);
-    font-size: 0.95rem;
-    line-height: 1.7;
-}
-
-/* STATS */
-.stats {
-    background: linear-gradient(135deg, var(--abu-gelap), var(--abu-sedang));
-    color: var(--putih);
-    text-align: center;
-    border-radius: 24px;
-    margin: 2rem 5%;
-    padding: 4rem 2rem;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2.5rem;
-}
-
-.stat-number {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    background: linear-gradient(135deg, var(--merah), var(--hijau));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    font-size: 1rem;
-    opacity: 0.9;
-    font-weight: 500;
-}
-
-/* TEAM */
-.team-card {
-    text-align: center;
-}
-
-.team-avatar {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    margin: 0 auto 1.5rem;
-    background: linear-gradient(135deg, var(--abu-terang), var(--putih-abu));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 4px solid var(--merah);
-    overflow: hidden;
-    transition: var(--transition);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.card:hover .team-avatar {
-    transform: scale(1.1);
-    border-color: var(--hijau);
-}
-
-.team-avatar-icon {
-    font-size: 3.5rem;
-    color: var(--abu-muda);
-}
-
-.team-card h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: var(--abu-gelap);
-    font-weight: 700;
-}
-
-.team-card p {
-    color: var(--merah);
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* STRUCTURE */
-.structure {
-    background: linear-gradient(135deg, var(--abu-gelap), var(--abu-sedang));
-    padding: 3rem;
-    border-radius: 24px;
-    max-width: 700px;
-    margin: 0 auto;
-    color: var(--putih);
-    position: relative;
-    border: 1px solid rgba(220,38,38,0.3);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-
-.structure::before {
-    content: '🏆';
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, var(--merah), var(--hijau));
-    color: var(--putih);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    box-shadow: 0 5px 15px rgba(220,38,38,0.4);
-}
-
-.structure-item {
-    text-align: center;
-    padding: 1.5rem;
-}
-
-.structure-item h3 {
-    color: var(--merah);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-
-.structure-divider {
-    color: var(--merah);
-    font-size: 1.5rem;
-    margin: 1rem 0;
-    display: block;
-}
-
-.structure-row {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin: 1.5rem 0;
-}
-
-.structure-row span {
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    padding: 0.75rem 1.5rem;
-    border-radius: 25px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.structure-row span:hover {
-    background: rgba(220,38,38,0.2);
-    border-color: var(--merah);
-    transform: translateY(-2px);
-}
-
-/* CONTACT */
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-}
-
-.contact-item {
-    text-align: center;
-    padding: 2.5rem 2rem;
-    background: var(--putih);
-    border-radius: 20px;
-    border: 1px solid var(--abu-terang);
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-
-.contact-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--merah), var(--hijau));
-}
-
-.contact-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-.contact-item i {
-    font-size: 2.5rem;
-    background: linear-gradient(135deg, var(--merah), var(--hijau));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 1.5rem;
-    display: block;
-}
-
-.contact-item h4 {
-    margin-bottom: 1rem;
-    color: var(--abu-gelap);
-    font-weight: 700;
-    font-size: 1.2rem;
-}
-
-.contact-item p {
-    color: var(--abu-muda);
-    font-size: 0.95rem;
-    line-height: 1.8;
-}
-
-/* FOOTER */
-footer {
-    background: linear-gradient(135deg, var(--abu-gelap), var(--
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tenaga Administrasi Sekolah SRMA 12 Bogor - Layanan administrasi profesional dan transparan">
+    <title>TAS SRMA 12 BOGOR - Tenaga Administrasi Sekolah Rakyat</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --abu-gelap: #1e293b;
+            --abu-sedang: #334155;
+            --abu-muda: #64748b;
+            --abu-terang: #e2e8f0;
+            --abu-bg: #f1f5f9;
+            --merah: #dc2626;
+            --merah-tua: #b91c1c;
+            --merah-muda: #ef4444;
+            --putih: #ffffff;
+            --hijau: #10b981;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+        body { font-family: 'Inter', sans-serif; background: var(--abu-bg); color: var(--abu-gelap); line-height: 1.7; overflow-x: hidden; }
+
+        /* LOADER */
+        .loader { position: fixed; inset: 0; background: var(--abu-gelap); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; transition: var(--transition); }
+        .loader.hide { opacity: 0; visibility: hidden; }
+        .spinner { width: 50px; height: 50px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--merah); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 1rem; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* NAVBAR */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(30, 41, 59, 0.95); backdrop-filter: blur(15px); color: var(--putih); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; border-bottom: 3px solid var(--merah); }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--putih); }
+        .logo-icon { width: 40px; height: 40px; background: var(--merah); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; }
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+        .nav-links a { color: var(--putih); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: var(--transition); }
+        .nav-links a:hover { color: var(--merah-muda); }
+
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: linear-gradient(135deg, var(--abu-gelap), var(--abu-sedang)); color: var(--putih); padding: 0 5%; }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; margin-bottom: 1.5rem; }
+        .hero h1 span { color: var(--merah-muda); }
+        .hero p { max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem; opacity: 0.9; }
+
+        /* SECTIONS */
+        .section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.2rem; margin-bottom: 10px; }
+        .section-title .line { width: 70px; height: 4px; background: var(--merah); margin: 0 auto; }
+
+        /* CARDS */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: var(--putih); padding: 2.5rem; border-radius: 15px; border: 1px solid var(--abu-terang); transition: var(--transition); text-align: center; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .card i { font-size: 2.5rem; color: var(--merah); margin-bottom: 1.5rem; }
+
+        /* STRUCTURE */
+        .structure { background: var(--abu-gelap); color: var(--putih); border-radius: 20px; padding: 3rem; text-align: center; }
+        .structure-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+        .badge { background: rgba(255,255,255,0.1); padding: 0.8rem 1.5rem; border-radius: 30px; border: 1px solid var(--merah); }
+
+        /* FOOTER */
+        footer { background: #0f172a; color: var(--putih); padding: 4rem 5% 2rem; }
+        .footer-bottom { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; opacity: 0.7; }
+
+        /* MOBILE MENU */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger span { width: 25px; height: 3px; background: white; }
+
+        @media (max-width: 768px) {
+            .nav-links { position: fixed; right: -100%; top: 70px; flex-direction: column; background: var(--abu-gelap); width: 100%; text-align: center; padding: 2rem; transition: 0.3s; }
+            .nav-links.active { right: 0; }
+            .hamburger { display: flex; }
+        }
+
+        .back-to-top { position: fixed; bottom: 20px; right: 20px; background: var(--merah); color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; transition: 0.3s; z-index: 99; }
+        .back-to-top.show { opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <div class="loader">
+        <div class="spinner"></div>
+        <p style="color: white; letter-spacing: 2px;">MEMUAT...</p>
+    </div>
+
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon">SR</div>
+            <strong>TAS SRMA 12 <span>BOGOR</span></strong>
+        </a>
+        <div class="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#layanan">Layanan</a></li>
+            <li><a href="#struktur">Struktur</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Pelayanan Administrasi <span>Profesional</span></h1>
+            <p>Mendukung sistem pendidikan yang transparan, akuntabel, dan berorientasi pada kemajuan Sekolah Rakyat SRMA 12 Bogor.</p>
+            <a href="#layanan" style="background: var(--merah); color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 5px; font-weight: 600;">Lihat Layanan</a>
+        </div>
+    </section>
+
+    <section class="section" id="layanan">
+        <div class="section-title">
+            <h2>Layanan Kami</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-file-invoice"></i>
+                <h3>Persuratan</h3>
+                <p>Pengelolaan administrasi surat menyurat masuk dan keluar secara digital & fisik.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Data Siswa</h3>
+                <p>Manajemen buku induk dan database siswa yang terintegrasi dan selalu diperbarui.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-archive"></i>
+                <h3>Arsip Sekolah</h3>
+                <p>Penyimpanan dokumen penting sekolah dengan sistem keamanan yang terjamin.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="struktur">
+        <div class="structure">
+            <h3>Struktur Organisasi TAS</h3>
+            <div class="structure-row">
+                <div class="badge">Kepala Urusan TU</div>
+                <div class="badge">Admin Dapodik</div>
+                <div class="badge">Bendahara</div>
+                <div class="badge">Tenaga Teknis</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="kontak">
+        <div class="section-title">
+            <h2>Hubungi Kami</h2>
+            <div class="line"></div>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Alamat</h3>
+                <p>Kota Bogor, Jawa Barat</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>info@tas-srma12bogor.sch.id</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div style="text-align: center;">
+            <p><strong>TAS SRMA 12 BOGOR</strong></p>
+            <p style="opacity: 0.6; font-size: 0.9rem;">Melayani dengan hati, bekerja dengan bukti.</p>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 TAS SRMA 12 Bogor. All Rights Reserved.
+        </div>
+    </footer>
+
+    <a href="#home" class="back-to-top" id="btnTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Loader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loader').classList.add('hide');
+            }, 800);
+        });
+
+        // Toggle Mobile Menu
+        const menuBtn = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav-links');
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Scroll to Top Button
+        const btnTop = document.getElementById('btnTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                btnTop.classList.add('show');
+            } else {
+                btnTop.classList.remove('show');
+            }
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
