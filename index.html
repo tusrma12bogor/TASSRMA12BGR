@@ -5,22 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TAS Digital</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 * {
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins', sans-serif;
-}
-
-html {
-    scroll-behavior:smooth;
+    font-family:'Inter', sans-serif;
 }
 
 body {
-    background:#f5f7fb;
+    background:#f8fafc;
+    color:#1e293b;
 }
 
 /* NAVBAR */
@@ -28,61 +25,53 @@ body {
     position:fixed;
     width:100%;
     top:0;
-    background:rgba(44,62,80,0.85);
-    backdrop-filter: blur(10px);
-    color:white;
-    padding:15px 40px;
+    background:white;
+    border-bottom:1px solid #e2e8f0;
+    padding:15px 60px;
     display:flex;
     justify-content:space-between;
     z-index:1000;
 }
 
-.navbar ul {
-    display:flex;
-    gap:20px;
-    list-style:none;
-}
-
 .navbar a {
-    color:white;
     text-decoration:none;
+    color:#1e293b;
+    margin-left:20px;
+    font-weight:500;
 }
 
 /* HERO */
 .hero {
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    padding-top:120px;
     text-align:center;
-    background:linear-gradient(135deg,#3498db,#2c3e50);
-    color:white;
+    padding-bottom:60px;
 }
 
 .hero h1 {
-    font-size:48px;
-    animation:fadeDown 1s ease;
+    font-size:40px;
+    font-weight:600;
 }
 
 .hero p {
     margin-top:10px;
+    color:#64748b;
 }
 
 /* SECTION */
 .section {
-    padding:80px 40px;
+    padding:60px;
 }
 
 .title {
     text-align:center;
+    font-size:28px;
     margin-bottom:40px;
 }
 
 /* GRID */
 .grid {
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:25px;
 }
 
@@ -90,60 +79,40 @@ body {
 .card {
     background:white;
     padding:25px;
-    border-radius:15px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
-    transition:0.4s;
-    opacity:0;
-    transform:translateY(40px);
-}
-
-.card.show {
-    opacity:1;
-    transform:translateY(0);
+    border-radius:12px;
+    border:1px solid #e2e8f0;
+    transition:0.3s;
 }
 
 .card:hover {
-    transform:translateY(-10px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
 }
 
 /* TEAM */
-.team-card {
+.team {
     text-align:center;
 }
 
-.team-card img {
+.team img {
     width:110px;
     height:110px;
     border-radius:50%;
     object-fit:cover;
     margin-bottom:10px;
-    transition:0.3s;
 }
 
-.team-card:hover img {
-    transform:scale(1.1);
+/* STRUKTUR */
+.structure {
+    text-align:center;
+    line-height:1.8;
 }
 
 /* FOOTER */
 footer {
-    background:#2c3e50;
-    color:white;
     text-align:center;
     padding:20px;
-}
-
-/* ANIMASI */
-@keyframes fadeDown {
-    from {opacity:0; transform:translateY(-20px);}
-    to {opacity:1; transform:translateY(0);}
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-    .navbar {
-        flex-direction:column;
-        gap:10px;
-    }
+    border-top:1px solid #e2e8f0;
+    color:#64748b;
 }
 </style>
 </head>
@@ -152,104 +121,117 @@ footer {
 
 <!-- NAVBAR -->
 <div class="navbar">
-    <h2>TAS Digital</h2>
-    <ul>
-        <li><a href="#">Beranda</a></li>
-        <li><a href="#layanan">Layanan</a></li>
-        <li><a href="#tim">Tim</a></li>
-    </ul>
+    <strong>TAS DIGITAL</strong>
+    <div>
+        <a href="#">Beranda</a>
+        <a href="#layanan">Layanan</a>
+        <a href="#tim">Tim</a>
+        <a href="#struktur">Struktur</a>
+    </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
     <h1>Sistem Administrasi Sekolah</h1>
-    <p>Modern, Terintegrasi, Profesional</p>
+    <p>Mendukung tata kelola administrasi yang profesional, efektif, dan transparan</p>
+</div>
+
+<!-- TENTANG -->
+<div class="section">
+    <h2 class="title">Tentang Kami</h2>
+    <p style="text-align:center; max-width:700px; margin:auto;">
+        Tenaga Administrasi Sekolah berperan dalam mendukung kelancaran operasional 
+        pendidikan melalui pengelolaan administrasi yang sistematis, akurat, dan 
+        berbasis teknologi.
+    </p>
 </div>
 
 <!-- LAYANAN -->
 <div class="section" id="layanan">
-    <h2 class="title">Layanan Utama</h2>
+    <h2 class="title">Layanan Administrasi</h2>
     <div class="grid">
 
-        <div class="card">📄 Surat Menyurat</div>
-        <div class="card">👨‍🏫 Kepegawaian</div>
-        <div class="card">🎓 Peserta Didik</div>
-        <div class="card">📂 Manajemen Dokumen</div>
-        <div class="card">📊 Laporan & Statistik</div>
-        <div class="card">💰 Administrasi Keuangan</div>
+        <div class="card"><strong>Surat Menyurat</strong><br><br>Pengelolaan surat masuk dan keluar secara digital.</div>
+
+        <div class="card"><strong>Kepegawaian</strong><br><br>Pengelolaan data tenaga pendidik dan kependidikan.</div>
+
+        <div class="card"><strong>Peserta Didik</strong><br><br>Administrasi data siswa dan arsip akademik.</div>
+
+        <div class="card"><strong>Manajemen Dokumen</strong><br><br>Penyimpanan dokumen sekolah secara terstruktur.</div>
+
+        <div class="card"><strong>Laporan & Statistik</strong><br><br>Penyajian data dan laporan sekolah.</div>
+
+        <div class="card"><strong>Administrasi Keuangan</strong><br><br>Pengelolaan keuangan secara transparan.</div>
 
     </div>
 </div>
 
 <!-- TIM -->
 <div class="section" id="tim">
-    <h2 class="title">Tim Administrasi</h2>
+    <h2 class="title">Tim Tenaga Administrasi</h2>
     <div class="grid">
 
-        <div class="card team-card">
+        <div class="card team">
             <img src="images/1.jpg">
-            <h3>Nama 1</h3>
+            <h4>Nama 1</h4>
             <p>Kepala Administrasi</p>
         </div>
 
-        <div class="card team-card">
+        <div class="card team">
             <img src="images/2.jpg">
-            <h3>Nama 2</h3>
+            <h4>Nama 2</h4>
             <p>Kepegawaian</p>
         </div>
 
-        <div class="card team-card">
+        <div class="card team">
             <img src="images/3.jpg">
-            <h3>Nama 3</h3>
-            <p>Data Siswa</p>
+            <h4>Nama 3</h4>
+            <p>Peserta Didik</p>
         </div>
 
-        <div class="card team-card">
+        <div class="card team">
             <img src="images/4.jpg">
-            <h3>Nama 4</h3>
+            <h4>Nama 4</h4>
             <p>Keuangan</p>
         </div>
 
-        <div class="card team-card">
+        <div class="card team">
             <img src="images/5.jpg">
-            <h3>Nama 5</h3>
+            <h4>Nama 5</h4>
             <p>Dokumen</p>
         </div>
 
-        <div class="card team-card">
+        <div class="card team">
             <img src="images/6.jpg">
-            <h3>Nama 6</h3>
+            <h4>Nama 6</h4>
             <p>Operator</p>
         </div>
 
-        <div class="card team-card">
+        <div class="card team">
             <img src="images/7.jpg">
-            <h3>Nama 7</h3>
+            <h4>Nama 7</h4>
             <p>Pelayanan</p>
         </div>
 
     </div>
 </div>
 
+<!-- STRUKTUR -->
+<div class="section" id="struktur">
+    <h2 class="title">Struktur Organisasi</h2>
+    <div class="structure">
+        Kepala Administrasi<br>
+        ↓<br>
+        Kepegawaian • Keuangan • Peserta Didik<br>
+        ↓<br>
+        Operator • Arsip • Pelayanan
+    </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
-    <p>© 2026 TAS Digital</p>
+    © 2026 TAS Digital - Sistem Administrasi Sekolah
 </footer>
-
-<script>
-const cards = document.querySelectorAll(".card");
-
-window.addEventListener("scroll", () => {
-    cards.forEach(card => {
-        let position = card.getBoundingClientRect().top;
-        let screen = window.innerHeight;
-
-        if(position < screen - 50){
-            card.classList.add("show");
-        }
-    });
-});
-</script>
 
 </body>
 </html>
