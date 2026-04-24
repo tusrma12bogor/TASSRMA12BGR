@@ -7,9 +7,9 @@
     <meta name="theme-color" content="#dc2626">
     <title>TAS SRMA 12 Bogor | Layanan Administrasi Prima</title>
 
-    <!-- Google Fonts: Plus Jakarta Sans & Fallback -->
+    <!-- Google Fonts: Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (Pro-like via free CDN) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -28,7 +28,7 @@
             --gray-dark: #1e293b;
             --gray-slate: #475569;
             --gray-light: #e2e8f0;
-            --gray-bg: #f1f5f9;
+            --gray-bg: #f8fafc;
             --white: #ffffff;
             --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
             --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
@@ -49,7 +49,7 @@
             padding: 0 5%;
         }
 
-        /* Navbar - profesional & clean */
+        /* Navbar */
         .navbar {
             position: fixed;
             top: 0;
@@ -126,7 +126,6 @@
             width: 100%;
         }
 
-        /* Hamburger */
         .hamburger {
             display: none;
             cursor: pointer;
@@ -134,7 +133,7 @@
             color: var(--gray-dark);
         }
 
-        /* Hero Section – lebih profesional & sharp */
+        /* Hero Section */
         .hero {
             padding: 9rem 0 6rem;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
@@ -239,7 +238,6 @@
             border-color: white;
         }
 
-        /* Section umum */
         .section {
             padding: 5rem 0;
         }
@@ -264,7 +262,7 @@
             border-radius: 2px;
         }
 
-        /* Layanan Grid dengan card modern, tidak harus bulat 100% agar lebih profesional */
+        /* Layanan Grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -318,53 +316,78 @@
             font-size: 0.9rem;
         }
 
-        /* Team Section – Bulat profesional dengan keseimbangan */
+        /* Team Section - 6 members, hanya nama dan NIP */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 2rem;
         }
 
         .team-member {
             text-align: center;
+            background: var(--white);
+            padding: 1.5rem 1rem;
+            border-radius: 2rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .team-member:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--gray-light);
         }
 
         .member-avatar {
-            width: 130px;
-            height: 130px;
-            margin: 0 auto 1.2rem;
-            background: var(--white);
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, var(--gray-light), #e0e7ff);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.5rem;
-            color: var(--gray-slate);
-            border: 3px solid var(--gray-light);
-            transition: var(--transition);
+            font-size: 3rem;
+            color: var(--primary);
+            border: 3px solid var(--white);
             box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        /* Styling untuk foto jika nanti ditambahkan */
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         .team-member:hover .member-avatar {
             border-color: var(--primary);
-            transform: scale(1.03);
-            color: var(--primary);
+            transform: scale(1.02);
         }
 
         .team-member h4 {
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            color: var(--gray-dark);
+            margin-bottom: 0.3rem;
         }
 
-        .team-member p {
-            font-size: 0.8rem;
-            font-weight: 600;
+        .team-member .nip {
+            font-size: 0.75rem;
+            font-family: monospace;
             color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            background: rgba(220,38,38,0.08);
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
         }
 
-        /* Statistik / nilai tambah */
+        /* Statistik */
         .stats-section {
             background: var(--white);
             border-radius: 3rem;
@@ -387,7 +410,7 @@
             color: var(--primary);
         }
 
-        /* Alamat & kontak lebih premium */
+        /* Kontak */
         .contact-section {
             background: var(--secondary);
             border-radius: 2rem;
@@ -423,7 +446,6 @@
             backdrop-filter: blur(4px);
         }
 
-        /* Footer */
         footer {
             background: #0b1120;
             color: #94a3b8;
@@ -432,7 +454,6 @@
             font-size: 0.85rem;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
@@ -465,9 +486,11 @@
             .contact-section {
                 padding: 1.8rem;
             }
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
         }
 
-        /* Scroll to top */
         .scroll-top {
             position: fixed;
             bottom: 2rem;
@@ -512,7 +535,7 @@
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container hero-content">
             <div class="hero-badge" data-aos="fade-down">#AdministrasiProfesional</div>
@@ -525,7 +548,7 @@
         </div>
     </section>
 
-    <!-- Layanan Unggulan (6 Layanan)-->
+    <!-- Layanan Unggulan (6 Layanan) -->
     <section class="section" id="layanan">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
@@ -568,39 +591,33 @@
         </div>
     </section>
 
-    <!-- Nilai lebih (statistik ringkasan)-->
+    <!-- Statistik ringkasan -->
     <div class="container">
         <div class="stats-section" data-aos="fade-up">
             <div class="stats-grid">
                 <div class="stat-item"><h3>+1.250</h3><p>Dokumen terkelola/tahun</p></div>
                 <div class="stat-item"><h3>99%</h3><p>Tingkat akurasi data</p></div>
-                <div class="stat-item"><h3>7</h3><p>Personel profesional</p></div>
+                <div class="stat-item"><h3>6</h3><p>Personel profesional</p></div>
                 <div class="stat-item"><h3>24/7</h3><p>Layanan helpdesk online</p></div>
             </div>
         </div>
     </div>
 
-    <!-- TIM KAMI (7 Personel) — desain bulat & profesional -->
+    <!-- TIM KAMI - 6 Orang, hanya NAMA dan NIP (tanpa bagian/jabatan) -->
     <section class="section" id="tim" style="background: var(--white);">
         <div class="container">
             <div class="section-header" data-aos="fade-up">
                 <h2>Tim Tata Usaha <span style="color: var(--primary);">Profesional</span></h2>
                 <div class="section-divider"></div>
-                <p>Berdedikasi memberikan layanan administrasi terbaik untuk warga sekolah.</p>
+                <p>Berdedikasi penuh dalam memberikan layanan administrasi terbaik untuk warga sekolah.</p>
             </div>
-            <div class="team-grid">
-                <div class="team-member" data-aos="zoom-in"><div class="member-avatar"><i class="fas fa-user-tie"></i></div><h4>Kepala TAS</h4><p>Koordinator</p></div>
-                <div class="team-member" data-aos="zoom-in" data-aos-delay="80"><div class="member-avatar"><i class="fas fa-user-check"></i></div><h4>Staf Umum</h4><p>Sekretaris</p></div>
-                <div class="team-member" data-aos="zoom-in" data-aos-delay="160"><div class="member-avatar"><i class="fas fa-calculator"></i></div><h4>Bendahara</h4><p>Keuangan</p></div>
-                <div class="team-member" data-aos="zoom-in" data-aos-delay="240"><div class="member-avatar"><i class="fas fa-database"></i></div><h4>Operator DAPODIK</h4><p>Data Specialist</p></div>
-                <div class="team-member" data-aos="zoom-in" data-aos-delay="320"><div class="member-avatar"><i class="fas fa-address-card"></i></div><h4>Kesiswaan</h4><p>Adm. Siswa</p></div>
-                <div class="team-member" data-aos="zoom-in" data-aos-delay="400"><div class="member-avatar"><i class="fas fa-archive"></i></div><h4>Arsiparis</h4><p>Pengelola Arsip</p></div>
-                <div class="team-member" data-aos="zoom-in" data-aos-delay="480"><div class="member-avatar"><i class="fas fa-boxes"></i></div><h4>Inventaris Sarpras</h4><p>Logistik</p></div>
+            <div class="team-grid" id="timContainer">
+                <!-- Data team akan di-generate oleh JavaScript untuk kemudahan edit -->
             </div>
         </div>
     </section>
 
-    <!-- Kontak dan Alamat yang lebih informatif & profesional -->
+    <!-- Kontak dan Alamat -->
     <div class="container" id="kontak">
         <div class="contact-section" data-aos="fade-up">
             <div class="contact-grid">
@@ -638,10 +655,55 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS
+        // ============================================================
+        // DATA TIM (6 Orang) - GANTI DENGAN DATA ASLI ANDA
+        // Cukup edit array di bawah ini: nama dan nip saja
+        // Untuk foto nanti bisa tambahkan properti 'foto': 'images/nama.jpg'
+        // Sekarang masih menggunakan icon default (font awesome)
+        // ============================================================
+        const timPersonil = [
+            { nama: "Dr. Hj. Nurul Aini, M.Pd", nip: "197505152005012001" },
+            { nama: "Ahmad Fauzi, S.Kom", nip: "198208102010011005" },
+            { nama: "Siti Nurjanah, S.E.", nip: "199003152014022002" },
+            { nama: "Dedi Mulyadi, A.Md.", nip: "198512252009031010" },
+            { nama: "Rina Febriyanti, S.AP", nip: "199202202019032003" },
+            { nama: "Eko Prasetyo, S.Kom", nip: "198811112011011012" }
+        ];
+
+        // Fungsi untuk format NIP dengan titik setiap 4 digit (opsional, biar rapi)
+        function formatNIP(nip) {
+            if (!nip) return '';
+            return nip.replace(/(\d{4})(?=\d)/g, '$1.').replace(/\.$/, '');
+        }
+
+        // Generate tampilan tim
+        const timContainer = document.getElementById('timContainer');
+        if (timContainer) {
+            timContainer.innerHTML = '';
+            timPersonil.forEach((person, idx) => {
+                const delay = idx * 100;
+                // Menggunakan icon default (font awesome) karena belum ada foto
+                // Jika nanti ingin pakai foto, ganti bagian dalam member-avatar dengan <img src="...">
+                const avatarContent = `<i class="fas fa-user-circle" style="font-size: 3.5rem;"></i>`;
+                
+                const card = document.createElement('div');
+                card.className = 'team-member';
+                card.setAttribute('data-aos', 'zoom-in');
+                card.setAttribute('data-aos-delay', delay);
+                card.innerHTML = `
+                    <div class="member-avatar">
+                        ${avatarContent}
+                    </div>
+                    <h4>${person.nama}</h4>
+                    <div class="nip">NIP. ${formatNIP(person.nip)}</div>
+                `;
+                timContainer.appendChild(card);
+            });
+        }
+
+        // Inisialisasi AOS
         AOS.init({
             duration: 700,
             once: true,
@@ -656,7 +718,6 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
-            // scroll top button
             const scrollBtn = document.getElementById('scrollTopBtn');
             if (window.scrollY > 500) {
                 scrollBtn.classList.add('show');
@@ -674,9 +735,11 @@
         // Mobile menu toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
 
         // Close mobile menu after clicking link
         const links = document.querySelectorAll('.nav-link');
@@ -712,8 +775,9 @@
         }
         window.addEventListener('scroll', setActiveLink);
         window.addEventListener('load', setActiveLink);
-        // Set home active at start
-        if(window.location.hash === "") document.querySelector('a[href="#home"]').classList.add('active');
+        if(window.location.hash === "" && document.querySelector('a[href="#home"]')) {
+            document.querySelector('a[href="#home"]').classList.add('active');
+        }
     </script>
 </body>
 </html>
