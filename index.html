@@ -3,200 +3,244 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TAS SRMA 12 BOGOR</title>
+<title>TAS SRMA 12 BOGOR - Tenaga Administrasi Sekolah</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<style>
 <style>
 :root {
-    --primary:#1e3a8a;
-    --secondary:#3b82f6;
-    --bg:#f1f5f9;
-    --text:#0f172a;
-    --card:#ffffff;
-    --accent:#22c55e;
+    --primary: #1e3a8a;
+    --primary-light: #3b82f6;
+    --secondary: #10b981;
+    --bg: #f1f5f9;
+    --text: #0f172a;
+    --text-light: #64748b;
+    --card: #ffffff;
+    --border: #e2e8f0;
 }
 
 * {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    background:var(--bg);
-    color:var(--text);
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
 }
 
 /* NAVBAR */
 .navbar {
-    position:fixed;
-    width:100%;
-    top:0;
-    background:var(--primary);
-    color:white;
-    padding:15px 60px;
-    display:flex;
-    justify-content:space-between;
-    z-index:1000;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar strong {
+    font-size: 1.25rem;
+    font-weight: 700;
 }
 
 .navbar a {
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
+    color: white;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    font-weight: 500;
+    transition: opacity 0.3s;
 }
 
-/* HERO */
+.navbar a:hover {
+    opacity: 0.8;
+}
+
+/* HERO SECTION */
 .hero {
-    padding-top:120px;
-    padding-bottom:80px;
-    text-align:center;
-    background:linear-gradient(135deg,var(--primary),var(--secondary));
-    color:white;
+    padding: 8rem 5% 4rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    color: white;
 }
 
 .hero h1 {
-    font-size:42px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
 }
 
 .hero p {
-    margin-top:10px;
-    opacity:0.9;
+    font-size: 1.125rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-/* SECTION */
+/* SECTION UMUM */
 .section {
-    padding:60px;
+    padding: 4rem 5%;
 }
 
 .title {
-    text-align:center;
-    margin-bottom:40px;
-}
-
-/* CARD */
-.card {
-    background:var(--card);
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.05);
-    transition:0.3s;
-    border-top:4px solid var(--secondary);
-}
-
-.card:hover {
-    transform:translateY(-8px);
-}
-
-/* TEAM */
-.team img {
-    border:3px solid var(--secondary);
-}
-
-/* FOOTER */
-footer {
-    background:var(--primary);
-    color:white;
-    text-align:center;
-    padding:20px;
-}
-</style>
-/* NAVBAR */
-.navbar {
-    position:fixed;
-    width:100%;
-    top:0;
-    background:white;
-    border-bottom:1px solid #e2e8f0;
-    padding:15px 60px;
-    display:flex;
-    justify-content:space-between;
-    z-index:1000;
-}
-
-.navbar a {
-    text-decoration:none;
-    color:#1e293b;
-    margin-left:20px;
-    font-weight:500;
-}
-
-/* HERO */
-.hero {
-    padding-top:120px;
-    text-align:center;
-    padding-bottom:60px;
-}
-
-.hero h1 {
-    font-size:40px;
-    font-weight:600;
-}
-
-.hero p {
-    margin-top:10px;
-    color:#64748b;
-}
-
-/* SECTION */
-.section {
-    padding:60px;
-}
-
-.title {
-    text-align:center;
-    font-size:28px;
-    margin-bottom:40px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    color: var(--primary);
 }
 
 /* GRID */
 .grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
 }
 
 /* CARD */
 .card {
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    border:1px solid #e2e8f0;
-    transition:0.3s;
+    background: var(--card);
+    padding: 1.75rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
 .card:hover {
-    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* TEAM */
+.card strong {
+    font-size: 1.25rem;
+    color: var(--primary);
+}
+
+/* TEAM CARD */
 .team {
-    text-align:center;
+    text-align: center;
 }
 
 .team img {
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    object-fit:cover;
-    margin-bottom:10px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid var(--primary-light);
+}
+
+.team h4 {
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.team p {
+    color: var(--text-light);
+    font-size: 0.875rem;
 }
 
 /* STRUKTUR */
 .structure {
-    text-align:center;
-    line-height:1.8;
+    text-align: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid var(--border);
+    line-height: 2;
+}
+
+.structure p {
+    margin: 0.5rem 0;
+}
+
+.structure .line {
+    color: var(--primary-light);
+    font-weight: bold;
+}
+
+/* TENTANG SECTION */
+.about-text {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--text-light);
 }
 
 /* FOOTER */
 footer {
-    text-align:center;
-    padding:20px;
-    border-top:1px solid #e2e8f0;
-    color:#64748b;
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--primary);
+    color: white;
+    font-size: 0.875rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.75rem 5%;
+    }
+    
+    .navbar div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .navbar a {
+        margin: 0 0.75rem;
+    }
+    
+    .hero {
+        padding: 6rem 5% 3rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+    
+    .title {
+        font-size: 1.5rem;
+    }
+    
+    .section {
+        padding: 2.5rem 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar a {
+        font-size: 0.875rem;
+        margin: 0 0.5rem;
+    }
+    
+    .grid {
+        gap: 1rem;
+    }
+    
+    .card {
+        padding: 1.25rem;
+    }
+    
+    .team img {
+        width: 90px;
+        height: 90px;
+    }
 }
 </style>
 </head>
@@ -214,7 +258,7 @@ footer {
     </div>
 </div>
 
-<!-- HERO -->
+<!-- HERO SECTION -->
 <div class="hero">
     <h1>Sistem Administrasi Sekolah</h1>
     <p>Mendukung tata kelola administrasi yang profesional, efektif, dan transparan</p>
@@ -223,30 +267,21 @@ footer {
 <!-- TENTANG -->
 <div class="section">
     <h2 class="title">Tentang Kami</h2>
-    <p style="text-align:center; max-width:700px; margin:auto;">
-        Tenaga Administrasi Sekolah berperan dalam mendukung kelancaran operasional 
-        pendidikan melalui pengelolaan administrasi yang sistematis, akurat, dan 
-        berbasis teknologi.
-    </p>
+    <div class="about-text">
+        <p>Tenaga Administrasi Sekolah (TAS) berperan dalam mendukung kelancaran operasional pendidikan melalui pengelolaan administrasi yang sistematis, akurat, dan berbasis teknologi.</p>
+    </div>
 </div>
 
 <!-- LAYANAN -->
 <div class="section" id="layanan">
     <h2 class="title">Layanan Administrasi</h2>
     <div class="grid">
-
-        <div class="card"><strong>Surat Menyurat</strong><br><br>Pengelolaan surat masuk dan keluar secara digital.</div>
-
-        <div class="card"><strong>Kepegawaian</strong><br><br>Pengelolaan data tenaga pendidik dan kependidikan.</div>
-
-        <div class="card"><strong>Peserta Didik</strong><br><br>Administrasi data siswa dan arsip akademik.</div>
-
-        <div class="card"><strong>Manajemen Dokumen</strong><br><br>Penyimpanan dokumen sekolah secara terstruktur.</div>
-
-        <div class="card"><strong>Laporan & Statistik</strong><br><br>Penyajian data dan laporan sekolah.</div>
-
-        <div class="card"><strong>Administrasi Keuangan</strong><br><br>Pengelolaan keuangan secara transparan.</div>
-
+        <div class="card"><strong>📧 Surat Menyurat</strong><br><br>Pengelolaan surat masuk dan keluar secara digital.</div>
+        <div class="card"><strong>👥 Kepegawaian</strong><br><br>Pengelolaan data tenaga pendidik dan kependidikan.</div>
+        <div class="card"><strong>🎓 Peserta Didik</strong><br><br>Administrasi data siswa dan arsip akademik.</div>
+        <div class="card"><strong>📄 Manajemen Dokumen</strong><br><br>Penyimpanan dokumen sekolah secara terstruktur.</div>
+        <div class="card"><strong>📊 Laporan & Statistik</strong><br><br>Penyajian data dan laporan sekolah.</div>
+        <div class="card"><strong>💰 Administrasi Keuangan</strong><br><br>Pengelolaan keuangan secara transparan.</div>
     </div>
 </div>
 
@@ -254,49 +289,41 @@ footer {
 <div class="section" id="tim">
     <h2 class="title">Tim Tenaga Administrasi</h2>
     <div class="grid">
-
         <div class="card team">
-            <img src="images/1.jpg">
-            <h4>Nama 1</h4>
+            <img src="images/1.jpg" alt="Kepala Administrasi" onerror="this.src='https://via.placeholder.com/120x120?text=Admin'">
+            <h4>Kepala Administrasi</h4>
             <p>Kepala Administrasi</p>
         </div>
-
         <div class="card team">
-            <img src="images/2.jpg">
-            <h4>Nama 2</h4>
+            <img src="images/2.jpg" alt="Kepegawaian" onerror="this.src='https://via.placeholder.com/120x120?text=Admin'">
+            <h4>Staff Kepegawaian</h4>
             <p>Kepegawaian</p>
         </div>
-
         <div class="card team">
-            <img src="images/3.jpg">
-            <h4>Nama 3</h4>
+            <img src="images/3.jpg" alt="Peserta Didik" onerror="this.src='https://via.placeholder.com/120x120?text=Admin'">
+            <h4>Staff Peserta Didik</h4>
             <p>Peserta Didik</p>
         </div>
-
         <div class="card team">
-            <img src="images/4.jpg">
-            <h4>Nama 4</h4>
+            <img src="images/4.jpg" alt="Keuangan" onerror="this.src='https://via.placeholder.com/120x120?text=Admin'">
+            <h4>Staff Keuangan</h4>
             <p>Keuangan</p>
         </div>
-
         <div class="card team">
-            <img src="images/5.jpg">
-            <h4>Nama 5</h4>
+            <img src="images/5.jpg" alt="Dokumen" onerror="this.src='https://via.placeholder.com/120x120?text=Admin'">
+            <h4>Staff Dokumen</h4>
             <p>Dokumen</p>
         </div>
-
         <div class="card team">
-            <img src="images/6.jpg">
-            <h4>Nama 6</h4>
+            <img src="images/6.jpg" alt="Operator" onerror="this.src='https://via.placeholder.com/120x120?text=Admin'">
+            <h4>Staff Operator</h4>
             <p>Operator</p>
         </div>
-
         <div class="card team">
-            <img src="images/7.jpg">
-            <h4>Nama 7</h4>
+            <img src="images/7.jpg" alt="Pelayanan" onerror="this.src='https://via.placeholder.com/120x120?text=Admin'">
+            <h4>Staff Pelayanan</h4>
             <p>Pelayanan</p>
         </div>
-
     </div>
 </div>
 
@@ -304,17 +331,17 @@ footer {
 <div class="section" id="struktur">
     <h2 class="title">Struktur Organisasi</h2>
     <div class="structure">
-        Kepala Administrasi<br>
-        ↓<br>
-        Kepegawaian • Keuangan • Peserta Didik<br>
-        ↓<br>
-        Operator • Arsip • Pelayanan
+        <p><strong>🏛️ Kepala Administrasi</strong></p>
+        <p class="line">↓</p>
+        <p><strong>📋 Kepegawaian</strong> &nbsp;|&nbsp; <strong>💰 Keuangan</strong> &nbsp;|&nbsp; <strong>🎓 Peserta Didik</strong></p>
+        <p class="line">↓</p>
+        <p>🖥️ Operator &nbsp;|&nbsp; 📁 Arsip &nbsp;|&nbsp; 🤝 Pelayanan</p>
     </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-    © 2026 TAS Digital  - Sistem Administrasi Sekolah - SRMA 12 Bogor
+    © 2026 TAS Digital - Tenaga Administrasi Sekolah - SRMA 12 Bogor
 </footer>
 
 </body>
