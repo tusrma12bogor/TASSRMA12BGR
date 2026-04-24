@@ -3,23 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tenaga Administrasi Sekolah SRMA 12 Bogor - Layanan administrasi profesional, transparan, dan berpihak pada rakyat">
+<meta name="keywords" content="TAS, SRMA 12 Bogor, administrasi sekolah, sekolah rakyat">
+<meta name="author" content="TAS SRMA 12 Bogor">
+<meta name="theme-color" content="#dc2626">
+
 <title>TAS SRMA 12 BOGOR - Tenaga Administrasi Sekolah Rakyat</title>
 
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 :root {
-    --abu-gelap: #2d3748;
-    --abu-sedang: #4a5568;
-    --abu-muda: #718096;
+    --abu-gelap: #1e293b;
+    --abu-sedang: #334155;
+    --abu-muda: #64748b;
     --abu-terang: #e2e8f0;
-    --abu-bg: #edf2f7;
+    --abu-bg: #f1f5f9;
     --merah: #dc2626;
     --merah-tua: #b91c1c;
     --merah-muda: #ef4444;
     --putih: #ffffff;
     --putih-abu: #f8fafc;
+    --hijau: #10b981;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -28,26 +36,30 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--abu-bg);
     color: var(--abu-gelap);
-    line-height: 1.6;
+    line-height: 1.7;
+    overflow-x: hidden;
 }
 
 /* LOADING ANIMATION */
 .loader {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--abu-gelap);
+    inset: 0;
+    background: linear-gradient(135deg, var(--abu-gelap) 0%, var(--abu-sedang) 100%);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.5s;
+    transition: var(--transition);
 }
 
 .loader.hide {
@@ -58,24 +70,32 @@ body {
 .spinner {
     width: 60px;
     height: 60px;
-    border: 3px solid var(--putih);
-    border-top: 3px solid var(--merah);
+    border: 4px solid rgba(255,255,255,0.1);
+    border-top: 4px solid var(--merah);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    margin-bottom: 1.5rem;
+}
+
+.spinner-text {
+    color: var(--putih);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* NAVBAR */
 .navbar {
     position: fixed;
-    width: 100%;
     top: 0;
     left: 0;
-    background: var(--abu-gelap);
+    right: 0;
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(20px);
     color: var(--putih);
     padding: 1rem 5%;
     display: flex;
@@ -83,91 +103,130 @@ body {
     align-items: center;
     z-index: 1000;
     border-bottom: 3px solid var(--merah);
-    transition: all 0.3s ease;
+    transition: var(--transition);
 }
 
 .navbar.scrolled {
     padding: 0.75rem 5%;
-    background: rgba(45, 55, 72, 0.95);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .navbar .logo {
     display: flex;
     align-items: center;
     gap: 12px;
+    text-decoration: none;
 }
 
 .navbar .logo-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--merah);
-    border-radius: 8px;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--merah), var(--merah-tua));
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 15px rgba(220,38,38,0.3);
+    transition: var(--transition);
+}
+
+.navbar .logo:hover .logo-icon {
+    transform: scale(1.05);
 }
 
 .navbar strong {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: 1px;
 }
 
 .navbar span {
     color: var(--merah);
+    font-weight: 800;
 }
 
-.navbar a {
+/* NAV LINKS */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links a {
     color: var(--putih);
     text-decoration: none;
-    margin-left: 2rem;
     font-weight: 500;
-    transition: all 0.3s;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: var(--transition);
     position: relative;
 }
 
-.navbar a:hover {
+.nav-links a:hover,
+.nav-links a.active {
     color: var(--merah);
+    background: rgba(220,38,38,0.1);
 }
 
-.navbar a::after {
+.nav-links a::after {
     content: '';
     position: absolute;
-    bottom: -5px;
-    left: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 0;
     height: 2px;
     background: var(--merah);
-    transition: width 0.3s;
+    transition: var(--transition);
 }
 
-.navbar a:hover::after {
-    width: 100%;
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 80%;
 }
 
-/* HAMBURGER MENU */
+/* HAMBURGER */
 .hamburger {
     display: none;
     flex-direction: column;
+    gap: 4px;
     cursor: pointer;
-    gap: 5px;
+    padding: 0.5rem;
 }
 
 .hamburger span {
     width: 25px;
     height: 3px;
     background: var(--putih);
-    transition: 0.3s;
+    border-radius: 2px;
+    transition: var(--transition);
 }
 
-/* HERO SECTION */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* HERO */
 .hero {
-    padding: 8rem 5% 5rem;
+    min-height: 100vh;
+    padding: 12rem 5% 6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    background: linear-gradient(135deg, var(--abu-gelap) 0%, var(--abu-sedang) 100%);
+    background: linear-gradient(135deg, var(--abu-gelap) 0%, var(--abu-sedang) 50%, var(--abu-gelap) 100%);
     color: var(--putih);
     position: relative;
     overflow: hidden;
@@ -176,98 +235,113 @@ body {
 .hero::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: repeating-linear-gradient(
-        45deg,
-        rgba(220,38,38,0.05) 0px,
-        rgba(220,38,38,0.05) 2px,
-        transparent 2px,
-        transparent 8px
-    );
+    inset: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(220,38,38,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(220,38,38,0.08) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, transparent 0 2px, rgba(220,38,38,0.03) 2px 8px);
     pointer-events: none;
 }
 
-.hero h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-    letter-spacing: 2px;
-}
-
-.hero h1 span {
-    color: var(--merah);
+.hero-content {
+    max-width: 800px;
+    z-index: 2;
     position: relative;
 }
 
-.hero p {
-    font-size: 1.125rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
 .hero .garuda {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.5rem;
-    background: var(--merah);
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 2rem;
+    background: linear-gradient(135deg, var(--merah), var(--merah-tua));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
+    box-shadow: 0 10px 30px rgba(220,38,38,0.4);
+    animation: float 6s ease-in-out infinite;
 }
 
-/* SECTION UMUM */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+.hero h1 span {
+    background: linear-gradient(135deg, var(--merah), var(--merah-muda));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero .subtitle {
+    font-size: 1.25rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+/* SECTIONS */
 .section {
-    padding: 4rem 5%;
+    padding: 6rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-.title {
+.section-title {
     text-align: center;
-    font-size: 2rem;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
     font-weight: 700;
     margin-bottom: 1rem;
     color: var(--abu-gelap);
     position: relative;
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
 }
 
-.title::after {
+.section-title::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
+    width: 100px;
     height: 4px;
-    background: linear-gradient(90deg, var(--merah), var(--abu-sedang));
+    background: linear-gradient(90deg, var(--merah), var(--hijau));
     border-radius: 2px;
 }
 
-.subtitle {
+.section-subtitle {
     text-align: center;
     color: var(--abu-muda);
-    margin-bottom: 3rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    margin-bottom: 4rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* GRID */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
 }
 
-/* CARD */
+/* CARDS */
 .card {
     background: var(--putih);
-    padding: 1.75rem;
-    border-radius: 1rem;
-    transition: all 0.3s ease;
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    transition: var(--transition);
     text-align: center;
     border: 1px solid var(--abu-terang);
     position: relative;
@@ -279,609 +353,251 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--merah), var(--abu-sedang));
+    background: linear-gradient(90deg, var(--merah), var(--hijau));
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
 }
 
 .card .icon {
-    font-size: 2.5rem;
-    color: var(--merah);
-    margin-bottom: 1rem;
+    font-size: 3rem;
+    background: linear-gradient(135deg, var(--merah), var(--merah-muda));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+    display: block;
 }
 
 .card strong {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     color: var(--abu-gelap);
     display: block;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
 }
 
 .card p {
     color: var(--abu-muda);
-    font-size: 0.875rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
 }
 
-/* TEAM CARD */
-.team {
+/* STATS */
+.stats {
+    background: linear-gradient(135deg, var(--abu-gelap), var(--abu-sedang));
+    color: var(--putih);
     text-align: center;
-    background: var(--putih);
+    border-radius: 24px;
+    margin: 2rem 5%;
+    padding: 4rem 2rem;
 }
 
-.team .avatar {
-    width: 130px;
-    height: 130px;
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
+}
+
+.stat-number {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--merah), var(--hijau));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* TEAM */
+.team-card {
+    text-align: center;
+}
+
+.team-avatar {
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
-    margin: 0 auto 1rem;
-    background: linear-gradient(135deg, var(--abu-terang), var(--putih));
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, var(--abu-terang), var(--putih-abu));
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 3px solid var(--merah);
+    border: 4px solid var(--merah);
     overflow: hidden;
+    transition: var(--transition);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.team .avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.card:hover .team-avatar {
+    transform: scale(1.1);
+    border-color: var(--hijau);
 }
 
-.team .avatar-icon {
-    font-size: 3rem;
+.team-avatar-icon {
+    font-size: 3.5rem;
     color: var(--abu-muda);
 }
 
-.team h4 {
-    font-size: 1.125rem;
-    margin-bottom: 0.25rem;
+.team-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
     color: var(--abu-gelap);
+    font-weight: 700;
 }
 
-.team p {
+.team-card p {
     color: var(--merah);
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* STRUKTUR */
+/* STRUCTURE */
 .structure {
-    background: var(--abu-gelap);
-    padding: 2.5rem;
-    border-radius: 1rem;
-    max-width: 650px;
+    background: linear-gradient(135deg, var(--abu-gelap), var(--abu-sedang));
+    padding: 3rem;
+    border-radius: 24px;
+    max-width: 700px;
     margin: 0 auto;
     color: var(--putih);
     position: relative;
-    border: 1px solid var(--merah);
+    border: 1px solid rgba(220,38,38,0.3);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
 .structure::before {
-    content: '★';
+    content: '🏆';
     position: absolute;
-    top: -15px;
+    top: -20px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--merah);
+    background: linear-gradient(135deg, var(--merah), var(--hijau));
     color: var(--putih);
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.875rem;
+    font-size: 1rem;
+    box-shadow: 0 5px 15px rgba(220,38,38,0.4);
 }
 
 .structure-item {
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem;
 }
 
 .structure-item h3 {
     color: var(--merah);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
-.structure-item .divider {
+.structure-divider {
     color: var(--merah);
-    font-size: 1.25rem;
-    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    display: block;
 }
 
 .structure-row {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
 }
 
 .structure-row span {
-    background: rgba(255,255,255,0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
-    font-size: 0.875rem;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-/* STATISTICS */
-.stats {
-    background: linear-gradient(135deg, var(--abu-gelap), var(--abu-sedang));
-    color: var(--putih);
-    text-align: center;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--merah);
-}
-
-.stat-label {
-    font-size: 0.875rem;
-    opacity: 0.8;
+.structure-row span:hover {
+    background: rgba(220,38,38,0.2);
+    border-color: var(--merah);
+    transform: translateY(-2px);
 }
 
 /* CONTACT */
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    max-width: 900px;
-    margin: 0 auto;
 }
 
 .contact-item {
     text-align: center;
-    padding: 1.5rem;
+    padding: 2.5rem 2rem;
     background: var(--putih);
-    border-radius: 1rem;
+    border-radius: 20px;
     border: 1px solid var(--abu-terang);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--merah), var(--hijau));
+}
+
+.contact-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
 .contact-item i {
-    font-size: 2rem;
-    color: var(--merah);
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--merah), var(--hijau));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+    display: block;
 }
 
 .contact-item h4 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     color: var(--abu-gelap);
+    font-weight: 700;
+    font-size: 1.2rem;
 }
 
 .contact-item p {
     color: var(--abu-muda);
-    font-size: 0.875rem;
+    font-size: 0.95rem;
+    line-height: 1.8;
 }
 
 /* FOOTER */
 footer {
-    background: var(--abu-gelap);
-    color: var(--putih);
-    padding: 2rem 5%;
-    border-top: 3px solid var(--merah);
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.footer-section h4 {
-    color: var(--merah);
-    margin-bottom: 1rem;
-}
-
-.footer-section p {
-    font-size: 0.875rem;
-    opacity: 0.8;
-    line-height: 1.8;
-}
-
-.footer-section a {
-    color: var(--putih);
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer-section a:hover {
-    color: var(--merah);
-}
-
-.social-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.social-links a {
-    color: var(--putih);
-    font-size: 1.25rem;
-    transition: color 0.3s;
-}
-
-.social-links a:hover {
-    color: var(--merah);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.75rem;
-    opacity: 0.6;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-    
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--abu-gelap);
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem 0;
-        gap: 1rem;
-        transform: translateX(-100%);
-        transition: transform 0.3s;
-        border-bottom: 2px solid var(--merah);
-    }
-    
-    .nav-links.active {
-        transform: translateX(0);
-    }
-    
-    .navbar a {
-        margin: 0;
-        display: block;
-        padding: 0.5rem;
-    }
-    
-    .hero h1 {
-        font-size: 1.75rem;
-    }
-    
-    .title {
-        font-size: 1.5rem;
-    }
-    
-    .section {
-        padding: 2.5rem 5%;
-    }
-    
-    .structure-row {
-        gap: 0.75rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .stats-grid {
-        gap: 1rem;
-    }
-    
-    .stat-number {
-        font-size: 1.75rem;
-    }
-    
-    .footer-content {
-        gap: 1.5rem;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<!-- LOADER -->
-<div class="loader" id="loader">
-    <div class="spinner"></div>
-</div>
-
-<!-- NAVBAR -->
-<div class="navbar" id="navbar">
-    <div class="logo">
-        <div class="logo-icon">TAS</div>
-        <strong>TENAGA ADMINISTRASI <span>SEKOLAH</span></strong>
-    </div>
-    <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    <div class="nav-links" id="navLinks">
-        <a href="#">BERANDA</a>
-        <a href="#layanan">LAYANAN</a>
-        <a href="#tim">TIM</a>
-        <a href="#struktur">STRUKTUR</a>
-        <a href="#kontak">KONTAK</a>
-    </div>
-</div>
-
-<!-- HERO SECTION -->
-<div class="hero">
-    <div class="garuda">
-        <i class="fas fa-landmark"></i>
-    </div>
-    <h1>SEKOLAH <span>RAKYAT</span></h1>
-    <h1 style="font-size:1.5rem; margin-top:-0.5rem;">SRMA 12 BOGOR</h1>
-    <p>Sistem Administrasi Sekolah yang profesional, transparan, dan berpihak pada rakyat. Melayani dengan hati, bekerja dengan integritas.</p>
-</div>
-
-<!-- TENTANG -->
-<div class="section">
-    <h2 class="title">Tentang Kami</h2>
-    <div class="subtitle">Tenaga Administrasi Sekolah SRMA 12 Bogor</div>
-    <p style="text-align:center; max-width:700px; margin:0 auto; color: #4a5568;">
-        Tenaga Administrasi Sekolah (TAS) berperan aktif dalam mendukung kelancaran operasional pendidikan 
-        melalui pengelolaan administrasi yang sistematis, akurat, dan berbasis teknologi. Kami berkomitmen 
-        memberikan pelayanan terbaik untuk seluruh warga sekolah.
-    </p>
-</div>
-
-<!-- STATISTICS -->
-<div class="section stats">
-    <div class="stats-grid">
-        <div>
-            <div class="stat-number">1.200+</div>
-            <div class="stat-label">Siswa Terlayani</div>
-        </div>
-        <div>
-            <div class="stat-number">45+</div>
-            <div class="stat-label">Tenaga Pendidik</div>
-        </div>
-        <div>
-            <div class="stat-number">12+</div>
-            <div class="stat-label">Program Unggulan</div>
-        </div>
-        <div>
-            <div class="stat-number">7</div>
-            <div class="stat-label">Divisi Administrasi</div>
-        </div>
-    </div>
-</div>
-
-<!-- LAYANAN -->
-<div class="section" id="layanan">
-    <h2 class="title">Layanan Administrasi</h2>
-    <div class="subtitle">Solusi administrasi terintegrasi untuk kebutuhan sekolah</div>
-    <div class="grid">
-        <div class="card">
-            <div class="icon"><i class="fas fa-envelope"></i></div>
-            <strong>Surat Menyurat</strong>
-            <p>Pengelolaan surat masuk dan keluar secara digital, cepat, dan terdokumentasi dengan baik.</p>
-        </div>
-        <div class="card">
-            <div class="icon"><i class="fas fa-users"></i></div>
-            <strong>Kepegawaian</strong>
-            <p>Pengelolaan data tenaga pendidik dan kependidikan secara profesional.</p>
-        </div>
-        <div class="card">
-            <div class="icon"><i class="fas fa-graduation-cap"></i></div>
-            <strong>Peserta Didik</strong>
-            <p>Administrasi data siswa, prestasi, dan arsip akademik yang terintegrasi.</p>
-        </div>
-        <div class="card">
-            <div class="icon"><i class="fas fa-folder-open"></i></div>
-            <strong>Manajemen Dokumen</strong>
-            <p>Penyimpanan dokumen sekolah secara terstruktur dan mudah diakses.</p>
-        </div>
-        <div class="card">
-            <div class="icon"><i class="fas fa-chart-line"></i></div>
-            <strong>Laporan & Statistik</strong>
-            <p>Penyajian data dan laporan sekolah yang akurat dan tepat waktu.</p>
-        </div>
-        <div class="card">
-            <div class="icon"><i class="fas fa-coins"></i></div>
-            <strong>Administrasi Keuangan</strong>
-            <p>Pengelolaan keuangan secara transparan, akuntabel, dan profesional.</p>
-        </div>
-    </div>
-</div>
-
-<!-- TIM -->
-<div class="section" id="tim">
-    <h2 class="title">Tim Tenaga Administrasi</h2>
-    <div class="subtitle">Berdedikasi melayani dengan sepenuh hati</div>
-    <div class="grid">
-        <div class="card team">
-            <div class="avatar">
-                <div class="avatar-icon"><i class="fas fa-user-tie"></i></div>
-            </div>
-            <h4>Kepala Administrasi</h4>
-            <p>Koordinator TAS</p>
-        </div>
-        <div class="card team">
-            <div class="avatar">
-                <div class="avatar-icon"><i class="fas fa-user"></i></div>
-            </div>
-            <h4>Staff Kepegawaian</h4>
-            <p>Divisi Kepegawaian</p>
-        </div>
-        <div class="card team">
-            <div class="avatar">
-                <div class="avatar-icon"><i class="fas fa-user-graduate"></i></div>
-            </div>
-            <h4>Staff Peserta Didik</h4>
-            <p>Divisi Kesiswaan</p>
-        </div>
-        <div class="card team">
-            <div class="avatar">
-                <div class="avatar-icon"><i class="fas fa-chart-simple"></i></div>
-            </div>
-            <h4>Staff Keuangan</h4>
-            <p>Divisi Keuangan</p>
-        </div>
-        <div class="card team">
-            <div class="avatar">
-                <div class="avatar-icon"><i class="fas fa-file-alt"></i></div>
-            </div>
-            <h4>Staff Dokumen</h4>
-            <p>Divisi Arsip</p>
-        </div>
-        <div class="card team">
-            <div class="avatar">
-                <div class="avatar-icon"><i class="fas fa-laptop"></i></div>
-            </div>
-            <h4>Staff Operator</h4>
-            <p>Divisi IT & Data</p>
-        </div>
-        <div class="card team">
-            <div class="avatar">
-                <div class="avatar-icon"><i class="fas fa-headset"></i></div>
-            </div>
-            <h4>Staff Pelayanan</h4>
-            <p>Divisi Front Office</p>
-        </div>
-    </div>
-</div>
-
-<!-- STRUKTUR -->
-<div class="section" id="struktur">
-    <h2 class="title">Struktur Organisasi</h2>
-    <div class="subtitle">Bagan organisasi Tenaga Administrasi Sekolah</div>
-    <div class="structure">
-        <div class="structure-item">
-            <h3><i class="fas fa-star"></i> Kepala Administrasi</h3>
-            <div class="divider">▼</div>
-            <div class="structure-row">
-                <span><i class="fas fa-users"></i> Kepegawaian</span>
-                <span><i class="fas fa-coins"></i> Keuangan</span>
-                <span><i class="fas fa-graduation-cap"></i> Peserta Didik</span>
-            </div>
-            <div class="divider">▼</div>
-            <div class="structure-row">
-                <span><i class="fas fa-laptop-code"></i> Operator</span>
-                <span><i class="fas fa-archive"></i> Arsip</span>
-                <span><i class="fas fa-handshake"></i> Pelayanan</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- KONTAK -->
-<div class="section" id="kontak">
-    <h2 class="title">Hubungi Kami</h2>
-    <div class="subtitle">Kami siap melayani Anda</div>
-    <div class="contact-grid">
-        <div class="contact-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <h4>Alamat</h4>
-            <p>Senta Galah Pakuan, Jl.H.Ming No.71<br>Desa Putat Nutug, Kecamatan Ciseeng<br>Kabupaten Bogor, Jawa Barat 16120</p>
-        </div>
-        <div class="contact-item">
-            <i class="fas fa-phone-alt"></i>
-            <h4>Telepon</h4>
-            <p>(0251) 1234567<br>+62 812 3456 7890</p>
-        </div>
-        <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <h4>Email</h4>
-            <p>sma12bogor@gmail.com<br>tas@srma12.sch.id</p>
-        </div>
-    </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-    <div class="footer-content">
-        <div class="footer-section">
-            <h4>TAS SRMA 12 BOGOR</h4>
-            <p>Tenaga Administrasi Sekolah berkomitmen memberikan pelayanan administrasi terbaik untuk mendukung terciptanya pendidikan yang berkualitas.</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
-        </div>
-        <div class="footer-section">
-            <h4>Jam Pelayanan</h4>
-            <p>Senin - Kamis: 07.30 - 15.30</p>
-            <p>Jumat: 07.30 - 16.00</p>
-            <p>Sabtu: 07.30 - 12.00</p>
-            <p>Minggu & Hari Libur: Tutup</p>
-        </div>
-        <div class="footer-section">
-            <h4>Quick Links</h4>
-            <p><a href="#">› Beranda</a></p>
-            <p><a href="#layanan">› Layanan</a></p>
-            <p><a href="#tim">› Tim</a></p>
-            <p><a href="#kontak">› Kontak</a></p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        © 2026 Tenaga Administrasi Sekolah - SRMA 12 Bogor | Sekolah Rakyat
-    </div>
-</footer>
-
-<script>
-// Loader
-window.addEventListener('load', function() {
-    const loader = document.getElementById('loader');
-    setTimeout(() => {
-        loader.classList.add('hide');
-    }, 500);
-});
-
-// Navbar scroll effect
-window.addEventListener('scroll', function() {
-    const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
-
-// Hamburger menu for mobile
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-
-hamburger.addEventListener('click', function() {
-    navLinks.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
-
-// Close menu when clicking a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-    });
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
-    });
-});
-</script>
-
-</body>
-</html>
+    background: linear-gradient(135deg, var(--abu-gelap), var(--
